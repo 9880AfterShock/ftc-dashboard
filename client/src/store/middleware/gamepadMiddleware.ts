@@ -110,6 +110,36 @@ const extractGamepadState = (gamepad: Gamepad) => {
         left_trigger: gamepad.buttons[6].value,
         right_trigger: gamepad.buttons[7].value,
       };
+    case GamepadType.G920_DRIVING_FORCE:
+      return {
+        left_stick_x: cleanMotionValues(-gamepad.axes[2]),
+        left_stick_y: cleanMotionValues(gamepad.axes[1]),
+        right_stick_x: cleanMotionValues(-gamepad.axes[3]),
+        right_stick_y: cleanMotionValues(gamepad.axes[4]),
+
+        dpad_up: gamepad.axes[5] < -0.1,
+        dpad_down: gamepad.axes[5] > 0.1,
+        dpad_left: gamepad.axes[4] < -0.1,
+        dpad_right: gamepad.axes[4] > 0.1,
+
+        a: gamepad.buttons[0].pressed,
+        b: gamepad.buttons[1].pressed,
+        x: gamepad.buttons[2].pressed,
+        y: gamepad.buttons[3].pressed,
+
+        guide: false,
+        start: gamepad.buttons[10].pressed,
+        back: gamepad.buttons[8].pressed,
+
+        left_bumper: gamepad.buttons[5].pressed,
+        right_bumper: gamepad.buttons[4].pressed,
+
+        left_stick_button: gamepad.buttons[10].pressed,
+        right_stick_button: gamepad.buttons[11].pressed,
+
+        left_trigger: gamepad.buttons[6].value,
+        right_trigger: gamepad.buttons[7].value,
+      }
     case GamepadType.XBOX_360:
       return {
         // same as SONY_DUALSHOCK_4 except guide and touchpad buttons

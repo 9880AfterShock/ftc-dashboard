@@ -16,6 +16,7 @@ const GamepadType = {
   LOGITECH_DUAL_ACTION: 'LOGITECH_DUAL_ACTION',
   XBOX_360: 'XBOX_360',
   SONY_DUALSHOCK_4: 'SONY_DUALSHOCK_4',
+  G920_DRIVING_FORCE: 'G920_DRIVING_FORCE',
   UNKNOWN: 'UNKNOWN',
 } as const;
 
@@ -48,6 +49,9 @@ export default {
       ) !== -1
     ) {
       return GamepadType.SONY_DUALSHOCK_4;
+    }  else if (
+      gamepad.id.search('G920') !== -1) {
+      return GamepadType.G920_DRIVING_FORCE;
     } else {
       return GamepadType.UNKNOWN;
     }
@@ -61,6 +65,8 @@ export default {
         return 0.15;
       case GamepadType.SONY_DUALSHOCK_4:
         return 0.04;
+      case GamepadType.G920_DRIVING_FORCE:
+        return 0.005;
       default:
         return 0.2;
     }
